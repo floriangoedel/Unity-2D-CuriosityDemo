@@ -6,6 +6,16 @@ public class PlayerInteract : MonoBehaviour
 {
     public bool inCollider;
     public bool leverActive = false;
+
+    public string spritePath = "Sprites/Lever";
+
+    private Sprite[] sprites;
+
+    public void Start()
+    {
+        sprites = Resources.LoadAll<Sprite>(spritePath);
+        Debug.Log(sprites);
+    }
     
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,13 +33,15 @@ public class PlayerInteract : MonoBehaviour
         {
             if (leverActive)
             {
-                leverActive = false;
                 Debug.Log("The Lever was de-activated!");   
+                leverActive = false;
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
             }
             else
             {
-                leverActive = true;
                 Debug.Log("The Lever was activated!");  
+                leverActive = true;
+                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
             }
         }
     }
