@@ -12,11 +12,14 @@ public class PlayerInteract : MonoBehaviour
     public Sprite activeLeverSprite;
     public Sprite inactiveLeverSprite;
     private SpriteRenderer renderer;
-
-    public void Start()
+    
+    // text lines
+    public string[] linesWhenActive;
+    public string[] linesWhenInactive;
+    
+    public void Awake()
     {
         renderer = gameObject.GetComponent<SpriteRenderer>();
-        renderer.sortingLayerName = "Objects";
     }
     
     void OnTriggerEnter2D(Collider2D other)
@@ -35,13 +38,11 @@ public class PlayerInteract : MonoBehaviour
         {
             if (isLeverActive)
             {
-                Debug.Log("The Lever was de-activated!");   
                 isLeverActive = false;
                 renderer.sprite = inactiveLeverSprite;
             }
             else
             {
-                Debug.Log("The Lever was activated!");  
                 isLeverActive = true;
                 renderer.sprite = activeLeverSprite;
             }
