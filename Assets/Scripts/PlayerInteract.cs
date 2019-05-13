@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
+    // functional variables
     public bool inCollider;
-    public bool leverActive = false;
+    public bool isLeverActive = false;
 
-    public string spritePath = "Sprites/Lever";
-
-    private Sprite[] sprites;
+    // sprite variables
+    public Sprite activeLeverSprite;
+    public Sprite inactiveLeverSprite;
+    private SpriteRenderer renderer;
 
     public void Start()
     {
-        sprites = Resources.LoadAll<Sprite>(spritePath);
-        Debug.Log(sprites);
+        renderer = gameObject.GetComponent<SpriteRenderer>();
+        renderer.sortingLayerName = "Objects";
     }
     
     void OnTriggerEnter2D(Collider2D other)
@@ -31,17 +33,17 @@ public class PlayerInteract : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.E) && inCollider)
         {
-            if (leverActive)
+            if (isLeverActive)
             {
                 Debug.Log("The Lever was de-activated!");   
-                leverActive = false;
-                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[0];
+                isLeverActive = false;
+                renderer.sprite = inactiveLeverSprite;
             }
             else
             {
                 Debug.Log("The Lever was activated!");  
-                leverActive = true;
-                gameObject.GetComponent<SpriteRenderer>().sprite = sprites[1];
+                isLeverActive = true;
+                renderer.sprite = activeLeverSprite;
             }
         }
     }
