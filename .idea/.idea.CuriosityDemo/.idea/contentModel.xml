@@ -11,6 +11,7 @@
           <e p="PlayerInteract.cs" t="Include" />
           <e p="PlayerMovement.cs" t="Include" />
           <e p="PuzzleController.cs" t="Include" />
+          <e p="TafelController.cs" t="Include" />
           <e p="TextBoxActivator.cs" t="Include" />
           <e p="TextBoxManager.cs" t="Include" />
         </e>
