@@ -9,6 +9,7 @@ public class DoorManager : MonoBehaviour
     public Sprite backgroundClosedDoor;
     public Sprite backgroundOpenedDoor;
     private SpriteRenderer renderer;
+    public BoxCollider2D doorCollider;
     
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,17 @@ public class DoorManager : MonoBehaviour
     public void openDoor()
     {
         renderer.sprite = backgroundOpenedDoor;
+        doorCollider.isTrigger = true;
     }
     
     public void closeDoor()
     {
         renderer.sprite = backgroundClosedDoor;
+        doorCollider.isTrigger = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Fader.instance.fadeToBlack();
     }
 }
