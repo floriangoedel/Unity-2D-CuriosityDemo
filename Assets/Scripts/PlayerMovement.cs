@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
                 footsteps.Play();
             }
         }
+        else footsteps.Stop();
        
         
         
